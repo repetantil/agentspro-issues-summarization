@@ -27,6 +27,11 @@ A Python script that uses LangChain, LangGraph, and MCP (Model Context Protocol)
    ```bash
    export OPENAI_API_KEY="your-openai-api-key"
    export GITHUB_TOKEN="your-github-personal-access-token"
+   
+   # Optional: Enable LangSmith tracing
+   export LANGCHAIN_TRACING_V2=true # Enable LangSmith tracing
+   export LANGCHAIN_API_KEY=ls__your-key       # Get from https://smith.langchain.com
+   export LANGCHAIN_PROJECT=pr-back-transportation-56
    ```
 
 ## Usage
@@ -38,8 +43,7 @@ python issues_summarizer.py
 
 Or specify custom repository and topic:
 ```bash
-python issues_summarizer.py --repo microsoft/vscode --topic "performance"
-python issues_summarizer.py --repo python/cpython --topic "documentation"
+python issues_summarizer.py --repo microsoft/vscode --topic "copilot"
 ```
 
 ## How It Works
@@ -58,9 +62,27 @@ The summary includes:
 - Common resolutions and workarounds
 - Notable trends
 
+## LangSmith Integration
+
+This script includes optional LangSmith integration for tracing and monitoring:
+
+- **Automatic tracing** of all LangChain/LangGraph operations
+- **Visual workflow visualization** in LangSmith dashboard
+- **Performance monitoring** and debugging
+- **Token usage tracking**
+
+To enable LangSmith:
+1. Sign up for a free account at [smith.langchain.com](https://smith.langchain.com)
+2. Get your API key from the settings
+3. Set the `LANGCHAIN_TRACING_V2`, `LANGCHAIN_API_KEY`, `LANGCHAIN_PROJECT` environment variables
+4. Run the script - traces will appear in your LangSmith project
+
+The script will work without LangSmith; it's completely optional.
+
 ## Requirements
 
 - Python 3.10+
 - OpenAI API key
 - GitHub Personal Access Token
 - Node.js (for MCP GitHub server via npx)
+- LangSmith API key (optional, for tracing)
